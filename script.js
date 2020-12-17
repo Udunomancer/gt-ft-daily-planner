@@ -21,6 +21,8 @@ function init() {
 
     formatAgendaDisplay();
 
+    setColorClass();
+
 }
 
 function formatAgendaDisplay() {
@@ -69,7 +71,12 @@ function getOrdinal() {
 }
 
 function setColorClass() {
-
+    $("textarea").attr("class", function () {
+        console.log($(this).attr("data-value"));
+    })
+    // .each(function() {
+    //     console.log(this.attr("data-value"));
+    // })
 }
 
 function startClock() {
