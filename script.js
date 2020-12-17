@@ -45,7 +45,7 @@ function formatAgendaDisplay() {
 
         var timeEl = $("<div>");
         timeEl.attr("class", "col-1 hour");
-        timeEl.text(hours[i]);
+        timeEl.text(convertTime(hours[i]));
         rowEl.append(timeEl);
 
         var scheduleEl = $("<textarea>");
@@ -81,6 +81,16 @@ function getOrdinal() {
             return "rd";
         default: 
             return "th";
+    }
+}
+
+function convertTime(militaryTime) {
+    if (parseInt(militaryTime) < 12) {
+        return militaryTime + "am";
+    } else if (parseInt(militaryTime) === 12) {
+        return militaryTime + "pm";
+    } else {
+        return (militaryTime - 12) + "pm";
     }
 }
 
