@@ -51,8 +51,6 @@ function init() {
 
     setColorClass();
 
-    //setAgenda();
-
 }
 
 function formatAgendaDisplay() {
@@ -73,6 +71,7 @@ function formatAgendaDisplay() {
 
         var buttonEl = $("<button>");
         buttonEl.attr("class", 'col-1 fas fa-save saveBtn');
+        buttonEl.attr("data-value", hours[i]);
         rowEl.append(buttonEl);
     }
 }
@@ -123,9 +122,20 @@ function startClock() {
     }, 60000);
 
 }
+
+function loadAgendaItem() {
+
+}
+
+function setLocalStorage(event) {
+    //When I click a save button, the corresponding hour item is saved
+    console.log("Click");
+    //localStorage.setItem(currentTime.toISODate(), JSON.stringify(agenda));
+}
+
 // ===FUNCTION CALLS===
 init();
 
 // ===EVENT LISTENERS===
-
+containEl.on("click", ".saveBtn", setLocalStorage);
 });
