@@ -6,19 +6,15 @@ var containEl = $(".container");
 // ===JS VARIABLES===
 var DateTime = luxon.DateTime;
 var currentTime = DateTime.local();
-//var pageClock = setInterval(clock(), 1000);
-// var dateFormat = Object.assign(DateTime.DATE_CUSTOM, {
-//     weekday: 'long',
-//     month: 'long',
-//     day: 'numeric'
-// })
+
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
 
 
 // ===FUNCTION DEFINITIONS===
 function init() {
-    currentDayEl.text(currentTime.toLocaleString(DateTime.DATE_SHORT));
+    formatDateDisplay();
+
     for (var i = 0; i < hours.length; i++) {
         var rowEl = $("<div>");
         rowEl.attr("class", "row time-block");
@@ -36,6 +32,29 @@ function init() {
         var buttonEl = $("<button>");
         buttonEl.attr("class", 'col-1 saveBtn');
         rowEl.append(buttonEl);
+    }
+}
+
+function formatDateDisplay() {
+    currentDayEl.text(currentTime.toFormat("cccc','  LLLL d") + getOrdinal());
+}
+
+function getOrdinal() {
+    var day = currentTime.day;
+    
+    switch(day) {
+        case 1:
+        case 21:
+        case 31:
+            return "st";
+        case 2:
+        case 22:
+            return "nd";
+        case 3:
+        case 23:
+            return "rd";
+        default: 
+            return "th";
     }
 }
 
