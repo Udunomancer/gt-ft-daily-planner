@@ -36,7 +36,7 @@ function formatAgendaDisplay() {
 
         var scheduleEl = $("<textarea>");
         scheduleEl.attr("class", "col-10 description");
-        scheduleEl.data("value", i);
+        scheduleEl.attr("data-value", hours[i]);
         rowEl.append(scheduleEl);
 
         var buttonEl = $("<button>");
