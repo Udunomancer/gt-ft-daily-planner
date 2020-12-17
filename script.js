@@ -127,9 +127,10 @@ function loadAgendaItem() {
 
 }
 
-function setLocalStorage(event) {
+function setLocalStorage() {
     //When I click a save button, the corresponding hour item is saved
-    console.log("Click");
+    var savedValue = $(this).parent().find("textarea").val();
+    console.log(savedValue);
     //localStorage.setItem(currentTime.toISODate(), JSON.stringify(agenda));
 }
 
