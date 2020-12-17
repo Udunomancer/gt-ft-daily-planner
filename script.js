@@ -42,7 +42,7 @@ function formatAgendaDisplay() {
         rowEl.append(scheduleEl);
 
         var buttonEl = $("<button>");
-        buttonEl.attr("class", 'col-1 saveBtn');
+        buttonEl.attr("class", 'col-1 fas fa-save saveBtn');
         rowEl.append(buttonEl);
     }
 }
@@ -72,20 +72,24 @@ function getOrdinal() {
 
 function setColorClass() {
     $("textarea").attr("class", function () {
-        console.log($(this).attr("data-value"));
-        $(this).addClass("past");
+        var textAreaEl = $(this);
+        var dataValue = textAreaEl.attr("data-value");
+        if (dataValue < currentTime.hour) {
+            textAreaEl.removeClass("present future").addClass("past");
+        } else if (dataValue == currentTime.hour) {
+            textAreaEl.removeClass("past future").addClass("present");
+        } else {
+            textAreaEl.removeClass("past present").addClass("future");
+        }
     })
-    // .each(function() {
-    //     console.log(this.attr("data-value"));
-    // })
 }
 
 function startClock() {
 
     clock = setInterval(function() {
-        console.log(currentTime.toLocaleString());
         currentTime = DateTime.local();
         formatDateDisplay();
+        setColorClass();
     }, 60000);
 
 }
