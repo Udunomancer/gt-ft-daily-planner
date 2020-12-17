@@ -6,6 +6,7 @@ var containEl = $(".container");
 // ===JS VARIABLES===
 var DateTime = luxon.DateTime;
 var currentTime = DateTime.local();
+var clock;
 
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
@@ -13,8 +14,16 @@ var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
 // ===FUNCTION DEFINITIONS===
 function init() {
+    
     formatDateDisplay();
 
+    startClock();
+
+    formatAgendaDisplay();
+
+}
+
+function formatAgendaDisplay() {
     for (var i = 0; i < hours.length; i++) {
         var rowEl = $("<div>");
         rowEl.attr("class", "row time-block");
@@ -27,6 +36,7 @@ function init() {
 
         var scheduleEl = $("<textarea>");
         scheduleEl.attr("class", "col-10 description");
+        scheduleEl.data("value", i);
         rowEl.append(scheduleEl);
 
         var buttonEl = $("<button>");
@@ -58,9 +68,19 @@ function getOrdinal() {
     }
 }
 
-// function clock() {
-//     var currentTime = DateTime.local();
-// }
+function setColorClass() {
+
+}
+
+function startClock() {
+
+    clock = setInterval(function() {
+        console.log(currentTime.toLocaleString());
+        currentTime = DateTime.local();
+        formatDateDisplay();
+    }, 60000);
+
+}
 // ===FUNCTION CALLS===
 init();
 
