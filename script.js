@@ -20,22 +20,6 @@ var agenda = {
 var clock;
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
-/*Local Storage Object: 
-LSVariable currentTime.toISODate() = {
-    9: "",
-    10: "",
-    11: "",
-    12: "",
-    13: "",
-    14: "",
-    15: "",
-    16: "",
-    17: ""
-}
-*/
-
-//localStorage.setItem(currentTime.toISODate(), JSON.stringify(agenda));
-
 // ===FUNCTION DEFINITIONS===
 function init() {
 
@@ -67,6 +51,7 @@ function formatAgendaDisplay() {
         var scheduleEl = $("<textarea>");
         scheduleEl.attr("class", "col-10 description");
         scheduleEl.attr("data-value", hours[i]);
+        scheduleEl.val(agenda[hours[i]]);
         rowEl.append(scheduleEl);
 
         var buttonEl = $("<button>");
@@ -123,15 +108,11 @@ function startClock() {
 
 }
 
-function loadAgendaItem() {
-
-}
-
 function setLocalStorage() {
-    //When I click a save button, the corresponding hour item is saved
+    var timeSlot = $(this).attr("data-value");
     var savedValue = $(this).parent().find("textarea").val();
-    console.log(savedValue);
-    //localStorage.setItem(currentTime.toISODate(), JSON.stringify(agenda));
+    agenda[timeSlot] = savedValue;
+    localStorage.setItem(currentTime.toISODate(), JSON.stringify(agenda));
 }
 
 // ===FUNCTION CALLS===
