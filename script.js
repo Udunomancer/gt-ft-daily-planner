@@ -22,7 +22,7 @@ function init() {
 
         var timeEl = $("<div>");
         timeEl.attr("class", "col-1 hour");
-        //timeEl.text();
+        timeEl.text(hours[i]);
         rowEl.append(timeEl);
 
         var scheduleEl = $("<textarea>");
