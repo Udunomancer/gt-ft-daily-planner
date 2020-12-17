@@ -5,6 +5,7 @@ var containEl = $(".container");
 
 // ===JS VARIABLES===
 var DateTime = luxon.DateTime;
+var currentTime = DateTime.local();
 //var pageClock = setInterval(clock(), 1000);
 // var dateFormat = Object.assign(DateTime.DATE_CUSTOM, {
 //     weekday: 'long',
@@ -17,7 +18,7 @@ var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
 // ===FUNCTION DEFINITIONS===
 function init() {
-    currentDayEl.text("Test");
+    currentDayEl.text(currentTime);
     for (var i = 0; i < hours.length; i++) {
         var rowEl = $("<div>");
         rowEl.attr("class", "row time-block");
