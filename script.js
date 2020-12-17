@@ -18,7 +18,7 @@ var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
 // ===FUNCTION DEFINITIONS===
 function init() {
-    currentDayEl.text(currentTime);
+    currentDayEl.text(currentTime.toLocaleString(DateTime.DATE_SHORT));
     for (var i = 0; i < hours.length; i++) {
         var rowEl = $("<div>");
         rowEl.attr("class", "row time-block");
