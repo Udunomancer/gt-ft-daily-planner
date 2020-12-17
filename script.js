@@ -3,7 +3,10 @@ $(document).ready(function() {
 var containEl = $(".container");
 
 // ===JS VARIABLES===
+var DateTime = luxon.DateTime;
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
+var dt = DateTime.local();
+
 
 // ===FUNCTION DEFINITIONS===
 function init() {
@@ -14,6 +17,7 @@ function init() {
 
         var timeEl = $("<div>");
         timeEl.attr("class", "col-1 hour");
+        timeEl.text(dt);
         rowEl.append(timeEl);
 
         var scheduleEl = $("<textarea>");
