@@ -73,6 +73,7 @@ function getOrdinal() {
 function setColorClass() {
     $("textarea").attr("class", function () {
         console.log($(this).attr("data-value"));
+        $(this).addClass("past");
     })
     // .each(function() {
     //     console.log(this.attr("data-value"));
