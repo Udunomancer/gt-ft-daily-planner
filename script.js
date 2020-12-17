@@ -6,14 +6,42 @@ var containEl = $(".container");
 // ===JS VARIABLES===
 var DateTime = luxon.DateTime;
 var currentTime = DateTime.local();
+var agenda = {
+    9: "",
+    10: "",
+    11: "",
+    12: "",
+    13: "",
+    14: "",
+    15: "",
+    16: "",
+    17: ""
+};
 var clock;
-
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
+/*Local Storage Object: 
+LSVariable currentTime.toISODate() = {
+    9: "",
+    10: "",
+    11: "",
+    12: "",
+    13: "",
+    14: "",
+    15: "",
+    16: "",
+    17: ""
+}
+*/
 
+//localStorage.setItem(currentTime.toISODate(), JSON.stringify(agenda));
 
 // ===FUNCTION DEFINITIONS===
 function init() {
+
+    if (localStorage.getItem(currentTime.toISODate()) !== null) {
+        agenda = JSON.parse(localStorage.getItem(currentTime.toISODate()));
+    }
     
     formatDateDisplay();
 
@@ -22,6 +50,8 @@ function init() {
     formatAgendaDisplay();
 
     setColorClass();
+
+    //setAgenda();
 
 }
 
