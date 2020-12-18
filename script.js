@@ -111,9 +111,45 @@ function setColorClass() {
 function startClock() {
 
     clock = setInterval(function() {
+        
+        
+        var oldTime = currentTime;
         currentTime = DateTime.local();
-        formatDateDisplay();
+
+        //If statement to check if there was a day change, IF SO...
+        if (oldTime.day !== currentTime.day) {
+        
+            //Reset the agenda items for a new day
+            if (localStorage.getItem(currentTime.toISODate()) !== null) {
+                agenda = JSON.parse(localStorage.getItem(currentTime.toISODate()));
+            } else {
+                agenda = {
+                    9: "",
+                    10: "",
+                    11: "",
+                    12: "",
+                    13: "",
+                    14: "",
+                    15: "",
+                    16: "",
+                    17: ""
+                };
+            }
+            
+            //Empty the Time container of yesterday's items
+            containEl.empty();
+
+            //Reload with today's items
+            formatAgendaDisplay();
+
+            //Change header to reflect new date
+            formatDateDisplay();
+        }
+        
+        //Time based functions that should always occur
+        //Dynamically set color coding
         setColorClass();
+
     }, 60000);
 
 }
