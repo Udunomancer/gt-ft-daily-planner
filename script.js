@@ -22,6 +22,9 @@ var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
 // ===FUNCTION DEFINITIONS===
 function init() {
+    //Function to run on page load.  Checks for local storage memory item and configures page
+    //Input: none
+    //Output: none
 
     if (localStorage.getItem(currentTime.toISODate()) !== null) {
         agenda = JSON.parse(localStorage.getItem(currentTime.toISODate()));
@@ -38,6 +41,10 @@ function init() {
 }
 
 function formatAgendaDisplay() {
+    //Function to build time, text area and save button for each slot on the 9-5 agenda
+    //Input: none
+    //Output: none
+
     for (var i = 0; i < hours.length; i++) {
         var rowEl = $("<div>");
         rowEl.attr("class", "row time-block");
@@ -62,10 +69,18 @@ function formatAgendaDisplay() {
 }
 
 function formatDateDisplay() {
+    //Function to set date in page header
+    //Input: none
+    //Output: none
+
     currentDayEl.text(currentTime.toFormat("cccc','  LLLL d") + getOrdinal());
 }
 
 function getOrdinal() {
+    //Function to set the day ordinal for the header date
+    //Input: none
+    //Output: (string) 2 character day ordinal
+
     var day = currentTime.day;
     
     switch(day) {
@@ -85,6 +100,10 @@ function getOrdinal() {
 }
 
 function convertTime(militaryTime) {
+    //Function to change time from 24 hour clock to 12 hour clock for display
+    //Input: (string) Time in 24 hour
+    //Output: (string) Time in 12 hour
+    
     if (parseInt(militaryTime) < 12) {
         return militaryTime + "am";
     } else if (parseInt(militaryTime) === 12) {
@@ -95,6 +114,10 @@ function convertTime(militaryTime) {
 }
 
 function setColorClass() {
+    //Function to set the time slot text area element colors by changing class based on current time
+    //Input: none
+    //Output: none
+
     $("textarea").attr("class", function () {
         var textAreaEl = $(this);
         var dataValue = textAreaEl.attr("data-value");
@@ -109,9 +132,11 @@ function setColorClass() {
 }
 
 function startClock() {
+    //Function to start the interval for dynamic page changes
+    //Input: none
+    //Output: none
 
     clock = setInterval(function() {
-        
         
         var oldTime = currentTime;
         currentTime = DateTime.local();
@@ -155,6 +180,10 @@ function startClock() {
 }
 
 function setLocalStorage() {
+    //Function to save textarea input into agenda then to local storage on Save Button click
+    //Input: none
+    //Output: none
+
     var timeSlot = $(this).attr("data-value");
     var savedValue = $(this).parent().find("textarea").val();
     agenda[timeSlot] = savedValue;
